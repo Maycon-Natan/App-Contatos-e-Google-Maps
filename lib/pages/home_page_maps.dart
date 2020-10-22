@@ -15,6 +15,7 @@ class _AppMapsState extends State<AppMaps> {
   StreamSubscription _locationSubscription;
   GoogleMapController mapController;
   LatLng latlng;
+
   DatabaseHelper db = DatabaseHelper();
   List<Pessoa> pessoas = List<Pessoa>();
 
@@ -29,22 +30,21 @@ class _AppMapsState extends State<AppMaps> {
   @override
   void initState() {
     super.initState();
-    _showMap();
+    allPoints();
   }
 
-  void _showMap() {
+  void allPoints() {
     db.getPessoas().then((lista) {
       pessoas = lista;
-      print(pessoas);
-    });
+      for (int i = 0; i <= pessoas.length; i++) {
+        double latitude = double.tryParse(pessoas[i].latitude);
+        double longitude = double.tryParse(pessoas[i].longitude);
+        LatLng location = new LatLng(latitude, longitude);
+        String name = pessoas[i].nome;
 
-    for (var i in pessoas) {
-      print(i.nome);
-      // double latitude = double.tryParse(i.latitude);
-      // double longitude = double.tryParse(i.longitude);
-      // LatLng location = new LatLng(latitude, longitude);
-      // _addMarker(location, i.nome);
-    }
+        _addMarker(location, name);
+      }
+    });
   }
 
   void _addMarker(LatLng latlng, String nome) {
@@ -53,11 +53,11 @@ class _AppMapsState extends State<AppMaps> {
     if (markerCount == 12) {
       return;
     }
-    final MarkerId markerId = MarkerId('Point Place');
+    final MarkerId markerId = MarkerId(nome);
 
     final Marker marker = Marker(
       markerId: markerId,
-      position: latlng,
+      position: (latlng),
       infoWindow: InfoWindow(title: nome, snippet: latlng.toString()),
       draggable: false,
       zIndex: 2,
@@ -74,15 +74,6 @@ class _AppMapsState extends State<AppMaps> {
     LatLng latlng = LatLng(newLocalData.latitude, newLocalData.longitude);
     this.setState(() {
       _addMarker(latlng, 'Local Atual');
-      // marker = Marker(
-      //     markerId: MarkerId("home"),
-      //     position: latlng,
-      //     rotation: newLocalData.heading,
-      //     draggable: false,
-      //     zIndex: 2,
-      //     flat: true,
-      //     anchor: Offset(0.5, 0.5),
-      //     infoWindow: InfoWindow(title: 'Teste', snippet: '*'));
     });
   }
 

@@ -22,7 +22,7 @@ class _ContatosState extends State<Contatos> {
     db.insertPessoa(p);
     Pessoa p1 = Pessoa(2, 'Joilson', '-5.095073', '-42.757969', null);
     db.insertPessoa(p1);
-    Pessoa p2 = Pessoa(3, 'Lucas', '-5.097635', '-42.758018', null);
+    Pessoa p2 = Pessoa(3, 'Lucas', '-5.088500', '-42.811200', null);
     db.insertPessoa(p2);
     Pessoa p3 = Pessoa(4, 'Emanoel', '-5.088423', '-42.811811', null);
     db.insertPessoa(p3);

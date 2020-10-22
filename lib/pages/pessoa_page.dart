@@ -69,14 +69,6 @@ class _PessoaPageState extends State<PessoaPage> {
           } else {
             _exibeAviso();
             FocusScope.of(context).requestFocus(_nomeFocus);
-            // } else if (_editaPessoa.latitude == null &&
-            //     _editaPessoa.longitude.isNotEmpty) {
-            //   _exibeAviso('Latitude', 'Digite sua latitude ');
-            //   FocusScope.of(context).requestFocus(_nomeFocus);
-            // } else if (_editaPessoa.latitude == null &&
-            //     _editaPessoa.latitude.isNotEmpty) {
-            //   _exibeAviso('Longitude', 'Digite sua longitude ');
-            //   FocusScope.of(context).requestFocus(_nomeFocus);
           }
         },
         child: Icon(Icons.save),

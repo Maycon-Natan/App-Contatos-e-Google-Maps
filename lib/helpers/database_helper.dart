@@ -58,6 +58,7 @@ class DatabaseHelper {
 
     var resultado = await db.insert(pessoaTable, pessoa.toMap(),
         conflictAlgorithm: ConflictAlgorithm.replace);
+
     return resultado;
   }
 
